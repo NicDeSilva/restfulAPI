@@ -1,17 +1,9 @@
-// Dependencies
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
+const express = require('express');
+const bodyParser = require('body-parser');
+const port = 8000;
+const app = express();
 
-//mongoose connect and set schemas
-require('./config/mongoose.js').mongooseSetSchemas();
-
-// App Settings
 app.use(bodyParser.json());
-
-// Routes
-require('./config/routes.js')(app);
-
-app.listen(8000, function() {
-    console.log("listening on port 8000");
-})
+app.listen(port, () => console.log(`listening on port ${port}`));
+require('./Backend/routes.js/index.js')(app);
+require('./config/mongoose.js').mongooseSetSchemas();
